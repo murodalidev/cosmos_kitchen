@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("https://cdn.jsdelivr.net/npm/sanitize.css@5.0.0/sanitize.css");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Domine&family=Lato:wght@400;700;900&family=Lobster&display=swap");
+
+html {
+  font-family: "Domine", serif;
+  font-family: "Lobster", cursive;
+}
+body {
+  background: #1a1d20;
+
+  /* font-family: 'Lobster', cursive; */
+  font-family: "Domine", serif;
+  color: rgba(255, 255, 255, 1);
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #2e3236;
+  margin-bottom: 0;
+}
+h1 {
+  margin-top: -40px;
+  margin-bottom: 0;
+  font-size: 39px;
+  font-family: "Domine", serif;
+  text-align: center;
+  color: #fff;
+}
+
+
+.card-list {
+  width: 100%;
+  border-radius: 4px;
+  /* border: 1px solid grey; */
+  padding: 1px;
+  margin: 0 auto;
+  display: grid;
+  margin-top: 45px;
+}
+
+.card-list > .wat {
+  /* background: #2e3236;; */
+  position: relative;
+  padding: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+.card-list > .wat > button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+/* .cards-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
+.cards {
+  width: 100%;
+  position: relative;
+}
+
+.cards > .card {
+  border-radius: 15px;
+  padding: 20px 35px;
+  width: 100% !important;
+  background: #2e3236;
+  box-shadow: 2px 2px 6px #494b4d;
+  margin-bottom: 10px;
+}
+ .head-section{
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.cards > .card h3 {
+  padding-bottom: 20px;
+  font-size: 25px;
+  color: #fff;
+  /* margin: 0; */
+}
+.cards > .card h3 span {
+  background-color: #4a4c4e;
+  padding: 10px 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-size: 30px;
+  margin-right: 10px;
+  font-family: "Lato", sans-serif;
+  font-family: "Lobster", cursive;
+}
+.cards > .card .middle {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+.cards > .card .middle p {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+.cards > .card .middle .foods {
+  text-align: right;
+}
+.cards > .card .middle .foods h4 {
+  font-size: 27px;
+  color: #fff;
+}
+.cards > .card:nth-child(2) {
+  border-left: 5px solid #f69a00;
+  /*transform: scale(1.08);*/
+}
+
+.cards > .card:nth-child(1) {
+  border-left: 5px solid #e5585f;
+  /*transform: scale(1.1);*/
+}
+
+.nav-link {
+  color: #fff;
+}
+.nav-link:hover {
+  color: #fff;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #4a4c4e;
+  border: 2px solid #fff;
+  border-radius: 10px;
+}
+
+/* button */
+
+.yellow{
+  background-color: rgb(179, 179, 5) !important;
+  border: 2px solid rgb(179, 179, 5) !important;
+  /* color: yellow !important; */
+  color: #fff !important;
+}
+.yellow a{
+  color: #fff !important;
+}
+.red{
+  background-color: rgb(212, 12, 12) !important;
+  border: 2px solid rgb(212, 12, 12) !important;
+  /* color: red !important; */
+  color: #fff !important;
+}
+.red a{
+  color: #fff !important;
+}
+.green{
+  background-color: green !important;
+  border: 2px solid green !important;
+  /* color: green !important; */
+  color: #fff !important;
+}
+.green a{
+  color: #fff !important;
+}
+
+.btn-curve {
+  background: 0 0;
+  display: inline-block;
+  padding: 5px 27px;
+  border: 1px solid #1a1d20;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-curve:hover:after {
+  bottom: -10px;
+  border-radius: 0;
+}
+.btn-curve:hover a {
+  text-decoration: none;
+  color: #fff;
+}
+.btn-curve:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: 100%;
+  background: #1a1d20;
+  border-radius: 0 0 100% 100%/0 0 100% 100%;
+  -webkit-transition: all 0.6s cubic-bezier(1, 0, 0.55, 1);
+  -o-transition: all 0.6s cubic-bezier(1, 0, 0.55, 1);
+  transition: all 0.6s cubic-bezier(1, 0, 0.55, 1);
+}
+.btn-curve a {
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+  -webkit-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s;
+}
+.btn-curve.btn-lit {
+  border-color: #fff;
+  color: #fff;
+}
+.btn-curve.btn-lit:hover a {
+  text-decoration: none;
+  color: #1a1d20;
+}
+.btn-curve.btn-lit:after {
+  background: #fff;
+}
+.btn-curve.btn-blc {
+  background: #1a1d20;
+}
+.btn-curve.btn-blc:after {
+  background: #fff;
+}
+.btn-curve.btn-blc a {
+  text-decoration: none;
+  color: #fff;
+}
+.btn-curve.btn-blc:hover a {
+  text-decoration: none;
+  color: #1a1d20;
+}
+.btn-curve.btn-lg {
+  padding: 14px 40px;
+}
+.btn-curve.btn-lg a {
+  text-decoration: none;
+  font-size: 14px;
+}
+.btn-curve.btn-wit {
+  background: #fff;
+  border-color: #fff;
+}
+.btn-curve.btn-wit:after {
+  background: #1a1d20;
+}
+.btn-curve.btn-wit a {
+  text-decoration: none;
+  color: #1a1d20;
+}
+.btn-curve.btn-wit:hover a {
+  text-decoration: none;
+  color: #fff;
+}
+.btn-curve.btn-radius {
+  border-radius: 30px;
+}

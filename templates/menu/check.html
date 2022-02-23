@@ -1,0 +1,58 @@
+<style>
+    .container {
+        /* border: 1px solid; */
+        width: 260px;
+        padding: 10px;
+    }
+    .company {
+        text-align: center;
+    }
+    .date {
+        text-align: right;
+    }
+    .total {
+        text-align: right;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    tr, td {
+        border: 1px solid;
+        font-size: 18px;
+    }
+    .food {
+        display: flex;
+    }
+    .food h4 {
+        width: 50%;
+        margin: 0px;
+    }
+
+    .total-price {
+        text-align: right;
+    }
+    .food-item {
+    }
+</style>
+
+
+<div class="container">
+    <h1 class="company">{{ company }}</h1>
+    <h3 class="date">{{ date.date.day }}-{{ date.date.month }}-{{ date.date.year }} | {{ date.time }}</h3>
+    <h3 class="order">{{ order }}</h3>
+    <h4 class="order">Xodim: <strong>{{ order.waiter }}</strong></h4>
+    <h4 class="order">Stol: <strong>{{ order.table }}</strong></h4>
+    <hr>
+    {% for food in foods %}
+    <div>
+        <h2>{{ food.meal }}:</h2>
+        <div class="food">
+            <h4 class="food-item">{{ food.price }} x {{ food.count }}</h4>
+            <h4 class="total-price">{{ food.total_price }}</h4>
+        </div>
+    </div>
+    {% endfor %}
+    <h2 class="total">{{ total }}</h2>
+
+</div>

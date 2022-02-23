@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        {% if messages %}
+            <ul class="messages list-group">
+                {% for message in messages %}
+                    <li {% if message.tags %}
+                        class="{{ message.tags }} list-group-item list-group-item-danger" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="card-list">
+            <div class="wat">
+                <h1>
+                    {% if request.get_full_path == '/?status=0' %}Tugatilganlar{% endif %}
+                    {% if request.get_full_path == '/?status=1' %}Navbatdagilar{% endif %}
+                    {% if request.get_full_path == '/?status=2' %}Qaytarilganlar{% endif %}
+                    {% if request.get_full_path == '/?status=3' %}Hammasi{% endif %}
+                </h1>
+            </div>
+
+            <div class="cards">
+                {% for order in orders %}
+                    <div class="card">
+                        <div class="head-section d-flex align-items-center justify-content-between">
+                            <h3><span>{{ order }}</span></h3>
+                            <h3>Buyurtmalar</h3>
+                        </div>
+                        <div class="d-flex middle">
+                            <div class="orders">
+
+                                <p>Ofitsant: {{ order.waiter }}</p>
+                                <p>Stol raqami: {{ order.table }}</p>
+                                <p>Buyurtmalar soni: {{ order.get_cart_items }}</p>
+                                <span>{{ order.created_at }}</span>
+                                <h4>
+                                    Buyurtma holati:
+                                    {% if order.status == 0 %}
+                                        <span class="badge bg-success">
+                                        {{ order.get_status_display }}
+                                    </span> <br>
+                                    <br>
+                                    <!-- <form action="get">
+                                        <select id='payment_types' data-id="{{order.id}}" class="form-select" aria-label="Default select example">
+                                            <option  value="0">To'lanmadi</option>
+                                            <option value="1">To'landi</option>
+                                          </select>
+                                    </form> -->
+                                    
+                                    {% endif %}
+                                    {% if order.status == 1 %}
+                                        <span class="badge bg-warning">
+                                        {{ order.get_status_display }}
+                                    </span>
+                                    {% endif %}
+                                    {% if order.status == 2 %}
+                                        <span class="badge bg-danger">
+                                        {{ order.get_status_display }}
+                                    </span>
+                                    {% endif %}
+
+                                </h4>
+
+                            </div>
+
+
+                            <div class="foods">
+
+                                {% for items in order.order_items.all %}
+                                    <p>
+                                        {% if items.is_completed %}
+                                            <img src="{% static 'images/complete.png' %}" alt="">
+                                        {% else %}
+                                            <img src="{% static 'images/cancel.png' %}" alt="">
+                                        {% endif %}
+                                        <strong>
+                                            {{ forloop.counter }}
+                                        </strong> - {{ items.meal }} - {{ items.quantity }} x {{ items.meal.cost }}
+                                    </p>
+
+                                {% endfor %}
+                                <p>Total: {{ order.get_cart_total }}</p>
+
+                            </div>
+
+
+                        </div>
+                        <div class="btn-block pt-3 pb-1">
+                            {% if order.status == 0 %}
+                                <div class="yellow btn-curve btn-wit">
+                                    <a href="/pending/?pk={{ order.id }}">Navbatga qo'shish</a>
+                                </div>
+                                <div class="red btn-curve btn-wit">
+                                    <a href="/cancel/?pk={{ order.id }}">Bekor qilish</a>
+                                </div>
+                                <div class="secondary btn-curve btn-wit">
+                                    <a onclick='printChequeFunc(event, "{{order.id}}")'>Chek chiqarish</a>
+                                </div>
+                            {% endif %}
+                            {% if order.status == 1 %}
+                                <div class="green btn-curve btn-wit">
+                                    <a href="/complete/?pk={{ order.id }}">Tugatildi</a>
+                                </div>
+                                <div class="red btn-curve btn-wit">
+                                    <a href="/cancel/?pk={{ order.id }}">Bekor qilish</a>
+                                </div>
+                            {% endif %}
+                            {% if order.status == 2 %}
+                                <div class="yellow btn-curve btn-wit">
+                                    <a href="/pending/?pk={{ order.id }}">Navbatga qo'shish</a>
+                                </div>
+                                <div class="green btn-curve btn-wit">
+                                    <a href="/complete/?pk={{ order.id }}">Tugatildi</a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+
+<script>
+    $('#payment_types').on('click', function() {
+        var url = "/payment_type/?id="+ $(this).attr("data-id") +"&payment_type="+ this.value +"";
+        $.ajax({
+            url: url,
+            method: 'get',            
+            success: function(data){
+            }
+        });
+
+    });
+
+    var printChequeFunc = (event, id) => {
+        event.preventDefault();
+
+        var url = `/print_check/${id}`;
+        $.ajax({
+            url: url,
+            method: 'get',            
+            success: function(data){
+                var newWindow = window.open('', '', 'left=50%,top=0,width=600,height=600,toolbar=0,scrollbars=0,status =0');
+                newWindow.document.write(data);
+                newWindow.print();
+                newWindow.close();
+            }
+        });
+    }
+</script>
+
+{% endblock %}
